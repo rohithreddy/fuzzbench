@@ -33,7 +33,7 @@ def get_uninstrumented_build_directory(target_directory):
 
 
 def build():
-    """Build fuzzer."""
+    """Build benchmark."""
     afl_fuzzer.prepare_build_environment()
 
     # Override AFL's FUZZER_LIB with QSYM's.
@@ -50,7 +50,7 @@ def build():
     # QSYM requires an uninstrumented build as well.
     new_env = os.environ.copy()
     utils.set_no_sanitizer_compilation_flags(new_env)
-    cflags = ['-O2', '-fno-omit-frame-pointer', '-gline-tables-only']
+    cflags = ['-O2']
     utils.append_flags('CFLAGS', cflags, new_env)
     utils.append_flags('CXXFLAGS', cflags, new_env)
 
